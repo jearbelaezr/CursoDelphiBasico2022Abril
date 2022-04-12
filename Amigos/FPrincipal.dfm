@@ -22,9 +22,25 @@ object FormPrincipal: TFormPrincipal
     object DBNavigator: TDBNavigator
       Left = 0
       Top = 0
-      Width = 240
+      Width = 232
       Height = 22
       DataSource = DataSourceAmigos
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbPost, nbCancel]
+      Hints.Strings = (
+        'Primer'
+        'Anterior'
+        'Siguiente'
+        #218'ltimo'
+        'Inserar'
+        'Borrar'
+        'Editar'
+        'Guardar'
+        'Cancelar'
+        'Refrescar'
+        'Aplicar cambios'
+        'Cancelar cambios')
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 0
     end
   end
@@ -40,7 +56,7 @@ object FormPrincipal: TFormPrincipal
       Top = 1
       Width = 622
       Height = 410
-      ActivePage = TabSheetDetalles
+      ActivePage = TabSheetResumen
       Align = alClient
       TabOrder = 0
       object TabSheetResumen: TTabSheet
@@ -61,7 +77,7 @@ object FormPrincipal: TFormPrincipal
           TitleFont.Style = []
           Columns = <
             item
-              Color = clAqua
+              Color = clSilver
               Expanded = False
               FieldName = 'Id'
               Visible = True
@@ -159,6 +175,7 @@ object FormPrincipal: TFormPrincipal
     end
   end
   object FDMemTableAmigos: TFDMemTable
+    BeforePost = FDMemTableAmigosBeforePost
     AfterPost = FDMemTableAmigosAfterPost
     FieldDefs = <>
     IndexDefs = <>
@@ -173,12 +190,16 @@ object FormPrincipal: TFormPrincipal
     Left = 352
     Top = 160
     object FDMemTableAmigosId: TIntegerField
+      AutoGenerateValue = arAutoInc
       DisplayLabel = 'Identificador'
       FieldName = 'Id'
+      ReadOnly = True
+      Required = True
     end
     object FDMemTableAmigosNombre: TStringField
       DisplayWidth = 30
       FieldName = 'Nombre'
+      Required = True
       Size = 100
     end
     object FDMemTableAmigosAlias: TStringField
@@ -188,6 +209,7 @@ object FormPrincipal: TFormPrincipal
       DisplayLabel = 'Tel'#233'fono'
       DisplayWidth = 15
       FieldName = 'Telefono'
+      Required = True
     end
   end
   object DataSourceAmigos: TDataSource

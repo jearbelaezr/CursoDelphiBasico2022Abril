@@ -39,11 +39,13 @@ type
     FileSaveDialog: TFileSaveDialog;
     procedure FormCreate(Sender: TObject);
     procedure FDMemTableAmigosAfterPost(DataSet: TDataSet);
+    procedure FDMemTableAmigosBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
     FNombreArchivo: string;
     function GetNombreArchivo: string;
     procedure SetNombreArchivo(const Value: string); // Campo - Field
+    procedure ValidarRequeridos(Tabla: TDataSet);
   public
     { Public declarations }
     property NombreArchivo: string read GetNombreArchivo write SetNombreArchivo;
@@ -75,6 +77,11 @@ begin
   end;
 end;
 
+procedure TFormPrincipal.FDMemTableAmigosBeforePost(DataSet: TDataSet);
+begin
+  ValidarRequeridos(FDMemTableAmigos);
+end;
+
 procedure TFormPrincipal.FormCreate(Sender: TObject);
 begin
   PageControl.ActivePage := TabSheetResumen;
@@ -100,6 +107,18 @@ procedure TFormPrincipal.SetNombreArchivo(const Value: string);
 begin
   FNombreArchivo := Value;
   Caption := ExtractFileName(FNombreArchivo) + ' - Lista de Amigos';
+end;
+
+procedure TFormPrincipal.ValidarRequeridos(Tabla: TDataSet);
+begin
+  for var Field in Tabla.Fields do
+  begin
+    if Field.Required and Field.IsNull then
+    begin
+      raise Exception.Create('El campo ' + Field.DisplayLabel +
+        ' es oolgatorio');
+    end;
+  end;
 end;
 
 end.
