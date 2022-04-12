@@ -26,22 +26,27 @@ type
     FDMemTableAmigosId: TIntegerField;
     FDStanStorageJSONLink: TFDStanStorageJSONLink;
     FDMemTableAmigosAlias: TStringField;
-    Label1: TLabel;
-    DBEdit1: TDBEdit;
-    Label2: TLabel;
-    DBEdit2: TDBEdit;
-    Label3: TLabel;
-    DBEdit3: TDBEdit;
-    Label4: TLabel;
-    DBEdit4: TDBEdit;
-    DBNavigator1: TDBNavigator;
+    LabelIdentificador: TLabel;
+    DBEditIdentificador: TDBEdit;
+    LabelNombre: TLabel;
+    DBEditNombre: TDBEdit;
+    LabelAlias: TLabel;
+    DBEditAlias: TDBEdit;
+    LabelTelefono: TLabel;
+    DBEditTelefono: TDBEdit;
+    DBNavigator: TDBNavigator;
     FileOpenDialog: TFileOpenDialog;
+    FileSaveDialog: TFileSaveDialog;
     procedure FormCreate(Sender: TObject);
     procedure FDMemTableAmigosAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
+    FNombreArchivo: string;
+    function GetNombreArchivo: string;
+    procedure SetNombreArchivo(const Value: string); // Campo - Field
   public
     { Public declarations }
+    property NombreArchivo: string read GetNombreArchivo write SetNombreArchivo;
   end;
 
 var
@@ -57,12 +62,24 @@ const
 
 procedure TFormPrincipal.FDMemTableAmigosAfterPost(DataSet: TDataSet);
 begin
-  FDMemTableAmigos.SaveToFile(FileOpenDialog.FileName, TipoArchivo);
+  if NombreArchivo = '' then
+  begin
+    if FileSaveDialog.Execute then
+    begin
+      NombreArchivo := FileSaveDialog.FileName;
+    end;
+  end;
+  if NombreArchivo <> '' then
+  begin
+    FDMemTableAmigos.SaveToFile(NombreArchivo, TipoArchivo);
+  end;
 end;
 
 procedure TFormPrincipal.FormCreate(Sender: TObject);
 begin
+  PageControl.ActivePage := TabSheetResumen;
   FileOpenDialog.DefaultFolder := GetCurrentDir;
+  FileOpenDialog.FileName := '';
   if FileOpenDialog.Execute and FileExists(FileOpenDialog.FileName) then
   begin
     FDMemTableAmigos.LoadFromFile(FileOpenDialog.FileName, TipoArchivo);
@@ -71,6 +88,18 @@ begin
   begin
     FDMemTableAmigos.CreateDataSet;
   end;
+  NombreArchivo := FileOpenDialog.FileName;
+end;
+
+function TFormPrincipal.GetNombreArchivo: string;
+begin
+  Result := FNombreArchivo;
+end;
+
+procedure TFormPrincipal.SetNombreArchivo(const Value: string);
+begin
+  FNombreArchivo := Value;
+  Caption := ExtractFileName(FNombreArchivo) + ' - Lista de Amigos';
 end;
 
 end.

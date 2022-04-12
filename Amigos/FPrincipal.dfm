@@ -19,10 +19,7 @@ object FormPrincipal: TFormPrincipal
     Height = 29
     Caption = 'ToolBar'
     TabOrder = 0
-    ExplicitLeft = 192
-    ExplicitTop = 88
-    ExplicitWidth = 150
-    object DBNavigator1: TDBNavigator
+    object DBNavigator: TDBNavigator
       Left = 0
       Top = 0
       Width = 240
@@ -38,16 +35,12 @@ object FormPrincipal: TFormPrincipal
     Height = 412
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = 96
-    ExplicitTop = 120
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object PageControl: TPageControl
       Left = 1
       Top = 1
       Width = 622
       Height = 410
-      ActivePage = TabSheetResumen
+      ActivePage = TabSheetDetalles
       Align = alClient
       TabOrder = 0
       object TabSheetResumen: TTabSheet
@@ -94,39 +87,39 @@ object FormPrincipal: TFormPrincipal
       object TabSheetDetalles: TTabSheet
         Caption = 'Detalles'
         ImageIndex = 1
-        object Label1: TLabel
+        object LabelIdentificador: TLabel
           Left = 8
           Top = 16
           Width = 67
           Height = 15
           Caption = 'Identificador'
-          FocusControl = DBEdit1
+          FocusControl = DBEditIdentificador
         end
-        object Label2: TLabel
+        object LabelNombre: TLabel
           Left = 8
           Top = 64
           Width = 44
           Height = 15
           Caption = 'Nombre'
-          FocusControl = DBEdit2
+          FocusControl = DBEditNombre
         end
-        object Label3: TLabel
+        object LabelAlias: TLabel
           Left = 8
           Top = 112
           Width = 25
           Height = 15
           Caption = 'Alias'
-          FocusControl = DBEdit3
+          FocusControl = DBEditAlias
         end
-        object Label4: TLabel
+        object LabelTelefono: TLabel
           Left = 8
           Top = 160
           Width = 45
           Height = 15
           Caption = 'Tel'#233'fono'
-          FocusControl = DBEdit4
+          FocusControl = DBEditTelefono
         end
-        object DBEdit1: TDBEdit
+        object DBEditIdentificador: TDBEdit
           Left = 8
           Top = 32
           Width = 154
@@ -135,7 +128,7 @@ object FormPrincipal: TFormPrincipal
           DataSource = DataSourceAmigos
           TabOrder = 0
         end
-        object DBEdit2: TDBEdit
+        object DBEditNombre: TDBEdit
           Left = 8
           Top = 80
           Width = 454
@@ -144,7 +137,7 @@ object FormPrincipal: TFormPrincipal
           DataSource = DataSourceAmigos
           TabOrder = 1
         end
-        object DBEdit3: TDBEdit
+        object DBEditAlias: TDBEdit
           Left = 8
           Top = 128
           Width = 304
@@ -153,7 +146,7 @@ object FormPrincipal: TFormPrincipal
           DataSource = DataSourceAmigos
           TabOrder = 2
         end
-        object DBEdit4: TDBEdit
+        object DBEditTelefono: TDBEdit
           Left = 8
           Top = 176
           Width = 229
@@ -216,7 +209,20 @@ object FormPrincipal: TFormPrincipal
       end>
     Options = [fdoPathMustExist]
     Title = 'Abrir archivo de amigos'
-    Left = 349
-    Top = 360
+    Left = 61
+    Top = 288
+  end
+  object FileSaveDialog: TFileSaveDialog
+    DefaultExtension = '.ami'
+    FavoriteLinks = <>
+    FileTypes = <
+      item
+        DisplayName = 'Archivo de Amigos'
+        FileMask = '*.ami'
+      end>
+    Options = [fdoOverWritePrompt]
+    Title = 'Guardar archivo de amigos'
+    Left = 61
+    Top = 352
   end
 end
