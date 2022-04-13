@@ -17,15 +17,17 @@ object FormPrincipal: TFormPrincipal
     Top = 0
     Width = 624
     Height = 29
+    ButtonHeight = 23
     Caption = 'ToolBar'
     TabOrder = 0
     object DBNavigator: TDBNavigator
       Left = 0
       Top = 0
       Width = 232
-      Height = 22
+      Height = 23
       DataSource = DataSourceAmigos
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbPost, nbCancel]
+      Align = alLeft
       Hints.Strings = (
         'Primer'
         'Anterior'
@@ -42,6 +44,24 @@ object FormPrincipal: TFormPrincipal
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
+    end
+    object LabelFiltro: TLabel
+      Left = 232
+      Top = 0
+      Width = 53
+      Height = 23
+      Align = alLeft
+      AutoSize = False
+      Caption = '    Filtro:  '
+      Layout = tlCenter
+    end
+    object EditFiltro: TEdit
+      Left = 285
+      Top = 0
+      Width = 121
+      Height = 23
+      TabOrder = 1
+      OnChange = EditFiltroChange
     end
   end
   object PanelPrincipal: TPanel
@@ -75,11 +95,17 @@ object FormPrincipal: TFormPrincipal
           TitleFont.Height = -12
           TitleFont.Name = 'Segoe UI'
           TitleFont.Style = []
+          OnMouseUp = DBGridMouseUp
           Columns = <
             item
               Color = clSilver
               Expanded = False
               FieldName = 'Id'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Segoe UI'
+              Title.Font.Style = []
               Visible = True
             end
             item
@@ -177,6 +203,7 @@ object FormPrincipal: TFormPrincipal
   object FDMemTableAmigos: TFDMemTable
     BeforePost = FDMemTableAmigosBeforePost
     AfterPost = FDMemTableAmigosAfterPost
+    FilterOptions = [foCaseInsensitive]
     FieldDefs = <>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]

@@ -37,9 +37,14 @@ type
     DBNavigator: TDBNavigator;
     FileOpenDialog: TFileOpenDialog;
     FileSaveDialog: TFileSaveDialog;
+    LabelFiltro: TLabel;
+    EditFiltro: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure FDMemTableAmigosAfterPost(DataSet: TDataSet);
     procedure FDMemTableAmigosBeforePost(DataSet: TDataSet);
+    procedure DBGridMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure EditFiltroChange(Sender: TObject);
   private
     { Private declarations }
     FNombreArchivo: string;
@@ -59,8 +64,40 @@ implementation
 {$R *.dfm}
 
 const
-  // NombreArchivo = 'SuperAmigos.ami';
   TipoArchivo = TFDStorageFormat.sfJSON;
+
+procedure TFormPrincipal.DBGridMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  GridCoord: TGridCoord;
+begin
+  GridCoord := DBGrid.MouseCoord(X, Y);
+  if GridCoord.Y = 0 then // Verificar clic en la fila de títulos.
+  begin
+    if GridCoord.X > 0 then
+    begin
+      FDMemTableAmigos.IndexFieldNames := DBGrid.Columns[GridCoord.X - 1]
+        .Field.FieldName;
+      for var I := 0 to DBGrid.Columns.Count - 1 do
+      begin
+        DBGrid.Columns[I].Title.Font.Style := DBGrid.Columns[I].Title.Font.Style
+          - [fsBold];
+      end;
+      DBGrid.Columns[GridCoord.X - 1].Title.Font.Style :=
+        DBGrid.Columns[GridCoord.X - 1].Title.Font.Style + [fsBold];
+    end;
+  end;
+end;
+
+procedure TFormPrincipal.EditFiltroChange(Sender: TObject);
+var
+  TextoBuscado: string;
+begin
+  TextoBuscado := ' like ' + QuotedStr('%' + EditFiltro.Text + '%');
+  FDMemTableAmigos.Filter := '(Nombre  ' + TextoBuscado + ') or (Alias ' +
+    TextoBuscado + ')';
+  FDMemTableAmigos.Filtered := True;
+end;
 
 procedure TFormPrincipal.FDMemTableAmigosAfterPost(DataSet: TDataSet);
 begin
