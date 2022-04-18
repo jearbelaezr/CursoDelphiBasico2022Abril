@@ -101,11 +101,6 @@ object FormPrincipal: TFormPrincipal
               Color = clSilver
               Expanded = False
               FieldName = 'Id'
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -12
-              Title.Font.Name = 'Segoe UI'
-              Title.Font.Style = []
               Visible = True
             end
             item
@@ -216,8 +211,7 @@ object FormPrincipal: TFormPrincipal
     StoreDefs = True
     Left = 352
     Top = 160
-    object FDMemTableAmigosId: TIntegerField
-      AutoGenerateValue = arAutoInc
+    object FDMemTableAmigosId: TFDAutoIncField
       DisplayLabel = 'Identificador'
       FieldName = 'Id'
       ReadOnly = True

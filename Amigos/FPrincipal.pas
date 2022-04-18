@@ -13,6 +13,7 @@ uses
 
 type
   TFormPrincipal = class(TForm)
+    FDMemTableAmigosId: TFDAutoIncField;
     FDMemTableAmigos: TFDMemTable;
     FDMemTableAmigosNombre: TStringField;
     FDMemTableAmigosTelefono: TStringField;
@@ -23,7 +24,6 @@ type
     TabSheetDetalles: TTabSheet;
     DBGrid: TDBGrid;
     DataSourceAmigos: TDataSource;
-    FDMemTableAmigosId: TIntegerField;
     FDStanStorageJSONLink: TFDStanStorageJSONLink;
     FDMemTableAmigosAlias: TStringField;
     LabelIdentificador: TLabel;
@@ -121,6 +121,8 @@ end;
 
 procedure TFormPrincipal.FormCreate(Sender: TObject);
 begin
+  FDMemTableAmigosId.AutoIncrementSeed:= 1;
+  FDMemTableAmigosId.AutoIncrementStep:= 1;
   PageControl.ActivePage := TabSheetResumen;
   FileOpenDialog.DefaultFolder := GetCurrentDir;
   FileOpenDialog.FileName := '';
