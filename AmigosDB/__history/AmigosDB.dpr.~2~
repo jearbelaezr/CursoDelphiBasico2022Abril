@@ -1,0 +1,16 @@
+program AmigosDB;
+
+uses
+  Vcl.Forms,
+  FPrincipal in 'FPrincipal.pas' {FormAmigos},
+  FDataModuleAmigos in 'FDataModuleAmigos.pas' {DataModule1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFormAmigos, FormAmigos);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.Run;
+end.

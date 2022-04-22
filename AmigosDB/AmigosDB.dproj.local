@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/04/07 15:09:29.000.831,=C:\Users\Adm\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/04/07 15:10:06.000.983,=C:\Users\Adm\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/04/22 15:20:34.423,=C:\Users\Adm\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/04/22 15:21:12.095,C:\repos\DelphiBasico\AmigosDB\FPrincipal.pas=C:\Users\Adm\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/04/22 15:21:12.095,C:\repos\DelphiBasico\AmigosDB\FPrincipal.dfm=C:\Users\Adm\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/04/22 15:21:24.845,C:\repos\DelphiBasico\AmigosDB\AmigosDB.dproj=C:\Users\Adm\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2022/04/22 15:23:17.769,=C:\repos\DelphiBasico\AmigosDB\Unit1.pas</Transaction>
+    <Transaction>2022/04/22 15:23:41.126,C:\repos\DelphiBasico\AmigosDB\FDataModuleAmigos.dfm=C:\repos\DelphiBasico\AmigosDB\Unit1.dfm</Transaction>
+    <Transaction>2022/04/22 15:23:41.126,C:\repos\DelphiBasico\AmigosDB\FDataModuleAmigos.pas=C:\repos\DelphiBasico\AmigosDB\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>
