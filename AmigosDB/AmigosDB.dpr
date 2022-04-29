@@ -11,6 +11,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFormAmigos, FormAmigos);
-  Application.CreateForm(TDataModuleAmigos, DataModuleAmigos);
   Application.Run;
 end.
