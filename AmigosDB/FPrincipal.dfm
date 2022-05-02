@@ -20,9 +20,6 @@ object FormAmigos: TFormAmigos
     Height = 29
     Caption = 'ToolBar'
     TabOrder = 0
-    ExplicitLeft = 256
-    ExplicitTop = 32
-    ExplicitWidth = 150
     object DBNavigator: TDBNavigator
       Left = 0
       Top = 0
@@ -55,8 +52,6 @@ object FormAmigos: TFormAmigos
     ActivePage = TabSheetDetalles
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 28
-    ExplicitHeight = 412
     object TabSheetResumen: TTabSheet
       Caption = 'Resumen'
       object DBGridAmigos: TDBGrid
@@ -89,12 +84,14 @@ object FormAmigos: TFormAmigos
           item
             Expanded = False
             FieldName = 'ALIAS'
+            Width = 64
             Visible = True
           end
           item
             Color = clAqua
             Expanded = False
             FieldName = 'TELEFONO'
+            Width = 64
             Visible = True
           end>
       end
@@ -157,7 +154,6 @@ object FormAmigos: TFormAmigos
         DataField = 'NOMBRE'
         DataSource = DataSourceAmigo
         TabOrder = 1
-        ExplicitWidth = 304
       end
       object DBEdit3: TDBEdit
         Left = 16
@@ -168,7 +164,6 @@ object FormAmigos: TFormAmigos
         DataField = 'ALIAS'
         DataSource = DataSourceAmigo
         TabOrder = 2
-        ExplicitWidth = 304
       end
       object DBEdit4: TDBEdit
         Left = 16
@@ -179,7 +174,6 @@ object FormAmigos: TFormAmigos
         DataField = 'TELEFONO'
         DataSource = DataSourceAmigo
         TabOrder = 3
-        ExplicitWidth = 304
       end
     end
   end
@@ -190,10 +184,7 @@ object FormAmigos: TFormAmigos
     Height = 19
     Panels = <>
     SimplePanel = True
-    SimpleText = 'Tengo %d amigo'
-    ExplicitLeft = 280
-    ExplicitTop = 160
-    ExplicitWidth = 0
+    SimpleText = 'Tengo %d amigos'
   end
   object DataSourceAmigo: TDataSource
     DataSet = DataModuleAmigos.FDTableaAmigo
